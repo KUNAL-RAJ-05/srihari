@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yay! 🎉</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff6b9d 0%, #ffa07a 50%, #ff8fab 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 8s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .credit {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 14px;
+            z-index: 1000;
+        }
+        
+        .instagram-icon {
+            font-size: 32px;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+        
+        .instagram-icon:hover {
+            transform: scale(1.1);
+            color: #ff1493;
+        }
+        
+        .credit-text {
+            text-align: right;
+        }
+        
+        .credit-handle {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .credit-song {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .content {
+            text-align: center;
+            animation: fadeInScale 1s ease-in;
+        }
+        
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .celebration-emoji {
+            font-size: 120px;
+            margin-bottom: 30px;
+            animation: bounce 1s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotate(-10deg);
+            }
+            75% {
+                transform: translateY(-10px) rotate(10deg);
+            }
+        }
+        
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 56px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            animation: textPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes textPulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        .message {
+            font-size: 32px;
+            color: white;
+            font-weight: 400;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+        
+        .sub-message {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+        }
+        
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f0f;
+            position: absolute;
+            animation: confetti-fall 3s linear forwards;
+        }
+        
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Floating hearts */
+        .heart {
+            position: absolute;
+            color: rgba(255, 182, 193, 0.6);
+            font-size: 24px;
+            animation: floatUp 6s ease-in infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .heart:nth-child(1) { left: 10%; animation-duration: 7s; font-size: 20px; }
+        .heart:nth-child(2) { left: 20%; animation-duration: 6s; animation-delay: 0.5s; font-size: 28px; }
+        .heart:nth-child(3) { left: 30%; animation-duration: 8s; animation-delay: 1s; font-size: 24px; }
+        .heart:nth-child(4) { left: 40%; animation-duration: 7s; animation-delay: 1.5s; font-size: 32px; }
+        .heart:nth-child(5) { left: 50%; animation-duration: 6.5s; animation-delay: 2s; font-size: 26px; }
+        .heart:nth-child(6) { left: 60%; animation-duration: 7.5s; animation-delay: 0.8s; font-size: 22px; }
+        .heart:nth-child(7) { left: 70%; animation-duration: 6.8s; animation-delay: 1.2s; font-size: 30px; }
+        .heart:nth-child(8) { left: 80%; animation-duration: 7.2s; animation-delay: 1.8s; font-size: 25px; }
+        .heart:nth-child(9) { left: 90%; animation-duration: 6.3s; animation-delay: 2.5s; font-size: 28px; }
+        .heart:nth-child(10) { left: 15%; animation-duration: 7.8s; animation-delay: 0.3s; font-size: 24px; }
+        .heart:nth-child(11) { left: 25%; animation-duration: 6.6s; animation-delay: 1.6s; font-size: 29px; }
+        .heart:nth-child(12) { left: 35%; animation-duration: 7.3s; animation-delay: 2.2s; font-size: 23px; }
+        .heart:nth-child(13) { left: 45%; animation-duration: 6.9s; animation-delay: 0.6s; font-size: 27px; }
+        .heart:nth-child(14) { left: 55%; animation-duration: 7.6s; animation-delay: 1.4s; font-size: 31px; }
+        .heart:nth-child(15) { left: 65%; animation-duration: 6.4s; animation-delay: 2.8s; font-size: 26px; }
+    </style>
+</head>
+<body>
+    
+    <!-- Floating hearts -->
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    
+    <div class="container">
+        <div class="content">
+            <div class="celebration-emoji">🎉</div>
+            <h1>Yay!</h1>
+            <div class="message">I knew you would say yes!</div>
+            <div class="sub-message">❤️ Happy Valentine's Day Sudiksha! ❤️</div>
+        </div>
+    </div>
+    
+    <script>
+        // Create confetti explosion
+        function createConfetti() {
+            const colors = ['#ff6b9d', '#ffa07a', '#ff1493', '#ff69b4', '#ffd700', '#ff8c00', '#ff6347', '#ff00ff', '#00ffff'];
+            const shapes = ['circle', 'square'];
+            
+            for (let i = 0; i < 150; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    
+                    const shape = shapes[Math.floor(Math.random() * shapes.length)];
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    const size = Math.random() * 10 + 5;
+                    const left = Math.random() * window.innerWidth;
+                    const animationDuration = Math.random() * 2 + 2;
+                    const rotationSpeed = Math.random() * 360 + 180;
+                    
+                    confetti.style.width = size + 'px';
+                    confetti.style.height = size + 'px';
+                    confetti.style.background = color;
+                    confetti.style.left = left + 'px';
+                    confetti.style.top = '-20px';
+                    confetti.style.borderRadius = shape === 'circle' ? '50%' : '0';
+                    confetti.style.animationDuration = animationDuration + 's';
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    confetti.style.zIndex = '9999';
+                    
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, animationDuration * 1000);
+                }, i * 10);
+            }
+        }
+        
+        // Create continuous popping effect
+        function createPoppingEffect() {
+            const popEmojis = ['🎉', '🎊', '💖', '✨', '🎈', '💝', '🌟', '💕'];
+            
+            setInterval(() => {
+                const pop = document.createElement('div');
+                pop.textContent = popEmojis[Math.floor(Math.random() * popEmojis.length)];
+                pop.style.position = 'fixed';
+                pop.style.fontSize = (Math.random() * 40 + 30) + 'px';
+                pop.style.left = Math.random() * window.innerWidth + 'px';
+                pop.style.bottom = '0px';
+                pop.style.pointerEvents = 'none';
+                pop.style.zIndex = '9999';
+                pop.style.animation = 'floatUp 2s ease-out forwards';
+                
+                document.body.appendChild(pop);
+                
+                setTimeout(() => {
+                    pop.remove();
+                }, 2000);
+            }, 300);
+        }
+        
+        // Start effects on load
+        window.onload = function() {
+            createConfetti();
+            setTimeout(createConfetti, 2000);
+            createPoppingEffect();
+        };
+    </script>
+</body>
+</html>

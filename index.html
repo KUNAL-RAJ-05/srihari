@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff6b9d 0%, #ffa07a 50%, #ff8fab 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 8s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .credit {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 14px;
+            z-index: 1000;
+        }
+        
+        .instagram-icon {
+            font-size: 32px;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+        
+        .instagram-icon:hover {
+            transform: scale(1.1);
+            color: #ff1493;
+        }
+        
+        .credit-text {
+            text-align: right;
+        }
+        
+        .credit-handle {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .credit-song {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .content {
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .big-heart {
+            font-size: 80px;
+            color: white;
+            margin-bottom: 20px;
+            animation: heartBeat 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            10%, 30% { transform: scale(0.9); }
+            20%, 40% { transform: scale(1.1); }
+        }
+        
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 48px;
+            font-weight: 400;
+            color: white;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 56px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 40px;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        button {
+            padding: 18px 45px;
+            font-size: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        #yesBtn {
+            background: #2d2d2d;
+            color: white;
+        }
+        
+        #yesBtn:hover {
+            background: #1a1a1a;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        #noBtn {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        #noBtn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+        
+        .really-text {
+            position: absolute;
+            top: 35%;
+            left: 20%;
+            font-size: 28px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 107, 157, 0.7);
+            padding: 15px 30px;
+            border-radius: 15px;
+            opacity: 0;
+            animation: fadeInReally 0.5s ease forwards;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        @keyframes fadeInReally {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .think-again {
+            margin-top: 25px;
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            opacity: 0;
+            animation: fadeInThink 0.5s ease 0.3s forwards;
+        }
+        
+        @keyframes fadeInThink {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .encouragement-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 32px;
+            font-weight: 600;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            pointer-events: none;
+            opacity: 0;
+            animation: messagePopIn 0.5s ease forwards;
+        }
+        
+        @keyframes messagePopIn {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+        
+        @keyframes messagePopOut {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+        }
+        
+        /* Floating hearts */
+        .heart {
+            position: absolute;
+            color: rgba(255, 182, 193, 0.6);
+            font-size: 24px;
+            animation: floatUp 6s ease-in infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Different heart sizes and speeds */
+        .heart:nth-child(1) { left: 10%; animation-duration: 7s; font-size: 20px; }
+        .heart:nth-child(2) { left: 20%; animation-duration: 6s; animation-delay: 0.5s; font-size: 28px; }
+        .heart:nth-child(3) { left: 30%; animation-duration: 8s; animation-delay: 1s; font-size: 24px; }
+        .heart:nth-child(4) { left: 40%; animation-duration: 7s; animation-delay: 1.5s; font-size: 32px; }
+        .heart:nth-child(5) { left: 50%; animation-duration: 6.5s; animation-delay: 2s; font-size: 26px; }
+        .heart:nth-child(6) { left: 60%; animation-duration: 7.5s; animation-delay: 0.8s; font-size: 22px; }
+        .heart:nth-child(7) { left: 70%; animation-duration: 6.8s; animation-delay: 1.2s; font-size: 30px; }
+        .heart:nth-child(8) { left: 80%; animation-duration: 7.2s; animation-delay: 1.8s; font-size: 25px; }
+        .heart:nth-child(9) { left: 90%; animation-duration: 6.3s; animation-delay: 2.5s; font-size: 28px; }
+        .heart:nth-child(10) { left: 15%; animation-duration: 7.8s; animation-delay: 0.3s; font-size: 24px; }
+        .heart:nth-child(11) { left: 25%; animation-duration: 6.6s; animation-delay: 1.6s; font-size: 29px; }
+        .heart:nth-child(12) { left: 35%; animation-duration: 7.3s; animation-delay: 2.2s; font-size: 23px; }
+        .heart:nth-child(13) { left: 45%; animation-duration: 6.9s; animation-delay: 0.6s; font-size: 27px; }
+        .heart:nth-child(14) { left: 55%; animation-duration: 7.6s; animation-delay: 1.4s; font-size: 31px; }
+        .heart:nth-child(15) { left: 65%; animation-duration: 6.4s; animation-delay: 2.8s; font-size: 26px; }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+  
+    
+    <!-- Floating hearts -->
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    <div class="heart">💕</div>
+    
+    <div class="container">
+        <div class="content">
+            <div class="big-heart">❤️</div>
+            <h1>Will You Be My Valentine</h1>
+            <div class="name">Sudiksha?</div>
+            <div class="buttons">
+                <button id="yesBtn">Yes! ❤️</button>
+                <button id="noBtn">No</button>
+            </div>
+            <div id="thinkAgain" class="think-again hidden">Think again!</div>
+        </div>
+    </div>
+    
+    <div id="reallyText" class="really-text hidden">Really?</div>
+    
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const reallyText = document.getElementById('reallyText');
+        const thinkAgain = document.getElementById('thinkAgain');
+        let noClickCount = 0;
+        let isNoBtnRunning = false;
+        
+        const encouragementMessages = [
+            "C'mon, think again! 💭",
+            "Don't do this! 😢",
+            "Please reconsider! 💝",
+            "You know you want to say yes! 😊",
+            "Really? 🥺",
+            "Come on now... 💔",
+            "Think about it! ❤️",
+            "Don't break my heart! 💔",
+            "Are you sure? 😔",
+            "One more chance! 🙏"
+        ];
+        let messageIndex = 0;
+        let messageTimeout;
+        
+        // Make No button run away from mouse
+        document.addEventListener('mousemove', function(e) {
+            if (!isNoBtnRunning) return;
+            
+            const btnRect = noBtn.getBoundingClientRect();
+            const btnCenterX = btnRect.left + btnRect.width / 2;
+            const btnCenterY = btnRect.top + btnRect.height / 2;
+            
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            
+            // Calculate distance between mouse and button
+            const distanceX = btnCenterX - mouseX;
+            const distanceY = btnCenterY - mouseY;
+            const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+            
+            // If mouse is within 150px of button, move it away
+            if (distance < 150) {
+                showEncouragementMessage();
+                
+                // Calculate direction away from mouse
+                const angle = Math.atan2(distanceY, distanceX);
+                
+                // Calculate new position
+                let newX = btnRect.left + Math.cos(angle) * 100;
+                let newY = btnRect.top + Math.sin(angle) * 100;
+                
+                // Keep button within viewport
+                const margin = 20;
+                newX = Math.max(margin, Math.min(window.innerWidth - btnRect.width - margin, newX));
+                newY = Math.max(margin, Math.min(window.innerHeight - btnRect.height - margin, newY));
+                
+                noBtn.style.position = 'fixed';
+                noBtn.style.left = newX + 'px';
+                noBtn.style.top = newY + 'px';
+                noBtn.style.transition = 'all 0.3s ease-out';
+            }
+        });
+        
+        function showEncouragementMessage() {
+            // Remove existing message if any
+            const existingMessage = document.querySelector('.encouragement-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+            
+            clearTimeout(messageTimeout);
+            
+            // Create and show new message
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'encouragement-message';
+            messageDiv.textContent = encouragementMessages[messageIndex];
+            document.body.appendChild(messageDiv);
+            
+            messageIndex = (messageIndex + 1) % encouragementMessages.length;
+            
+            // Remove message after 1.5 seconds
+            messageTimeout = setTimeout(() => {
+                if (messageDiv) {
+                    messageDiv.style.animation = 'messagePopOut 0.3s ease forwards';
+                    setTimeout(() => messageDiv.remove(), 300);
+                }
+            }, 1500);
+        }
+        
+        yesBtn.addEventListener('click', function() {
+            // Create celebration effect
+            for(let i = 0; i < 30; i++) {
+                createCelebrationHeart();
+            }
+            
+            // Redirect to celebration page after brief animation
+            setTimeout(() => {
+                window.location.href = 'vindhya-celebration.html';
+            }, 800);
+        });
+        
+        noBtn.addEventListener('click', function() {
+            noClickCount++;
+            
+            if(noClickCount === 1) {
+                reallyText.classList.remove('hidden');
+                isNoBtnRunning = true;
+            }
+            
+            // Make yes button bigger and more prominent
+            const currentSize = parseInt(window.getComputedStyle(yesBtn).fontSize);
+            yesBtn.style.fontSize = (currentSize + 4) + 'px';
+            yesBtn.style.padding = (18 + noClickCount * 3) + 'px ' + (45 + noClickCount * 5) + 'px';
+        });
+        
+        function createCelebrationHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'fixed';
+            heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.top = window.innerHeight + 'px';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '9999';
+            heart.style.transition = 'all 2s ease-out';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.style.top = '-100px';
+                heart.style.opacity = '0';
+                heart.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
+            }, 10);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 2000);
+        }
+        
+        // Music Control
+        let isMusicPlaying = false;
+        const bgMusic = document.getElementById('bgMusic');
+        const musicToggle = document.getElementById('musicToggle');
+        
+        function toggleMusic() {
+            if (isMusicPlaying) {
+                bgMusic.pause();
+                musicToggle.innerHTML = '🔇';
+                musicToggle.style.background = 'rgba(255, 200, 200, 0.9)';
+            } else {
+                bgMusic.play();
+                musicToggle.innerHTML = '🎵';
+                musicToggle.style.background = 'rgba(255, 255, 255, 0.9)';
+            }
+            isMusicPlaying = !isMusicPlaying;
+        }
+        
+        // Auto-play music on first user interaction
+        document.addEventListener('click', function initMusic() {
+            if (!isMusicPlaying) {
+                bgMusic.play().then(() => {
+                    isMusicPlaying = true;
+                    musicToggle.innerHTML = '🎵';
+                }).catch(() => {
+                    // Autoplay blocked, user needs to click the button
+                });
+            }
+            document.removeEventListener('click', initMusic);
+        }, { once: true });
+    </script>
+</body>
+</html>
