@@ -1,210 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine?</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be My Valentine?</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            overflow: hidden;
-            height: 100vh;
-            background: linear-gradient(135deg, #ff6b9d, #ffa07a, #ff8fab);
-            background-size: 200% 200%;
-            animation: gradientShift 8s ease infinite;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ff6b9d, #ffa07a, #ff8fab);
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease infinite;
+}
 
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            z-index: 10;
-            position: relative;
-        }
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 
-        .content {
-            text-align: center;
-            color: white;
-            animation: fadeIn 1s ease;
-        }
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+.content {
+    text-align: center;
+}
 
-        .big-heart {
-            font-size: 80px;
-            animation: heartBeat 1.5s infinite;
-        }
+.big-heart {
+    font-size: 80px;
+    animation: heartBeat 1.5s infinite;
+}
 
-        @keyframes heartBeat {
-            0%,100% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-        }
+@keyframes heartBeat {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
 
-        h1 {
-            font-size: 48px;
-            font-weight: 400;
-            margin-top: 10px;
-        }
+h1 {
+    font-size: 48px;
+    color: white;
+}
 
-        .name {
-            font-size: 56px;
-            font-weight: 300;
-            margin-bottom: 40px;
-        }
+.name {
+    font-size: 56px;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 30px;
+}
 
-        .buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-        }
+.buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
 
-        button {
-            padding: 18px 45px;
-            font-size: 20px;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
+/* YES button */
+.yes-btn {
+    padding: 18px 45px;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 50px;
+    background: #2d2d2d;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
 
-        #yesBtn {
-            background: #222;
-            color: white;
-        }
+.yes-btn:hover {
+    transform: scale(1.05);
+}
 
-        #yesBtn:hover {
-            transform: scale(1.1);
-        }
+/* NO button */
+#noBtn {
+    padding: 18px 45px;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 50px;
+    background: rgba(255,255,255,0.3);
+    color: white;
+    border: 2px solid rgba(255,255,255,0.5);
+    cursor: pointer;
+}
 
-        #noBtn {
-            background: rgba(255,255,255,0.3);
-            color: white;
-            border: 2px solid rgba(255,255,255,0.5);
-        }
+/* Floating hearts */
+.heart {
+    position: absolute;
+    bottom: -50px;
+    font-size: 24px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.7;
+}
 
-        .really-text {
-            position: absolute;
-            top: 35%;
-            left: 20%;
-            background: rgba(255, 107, 157, 0.8);
-            padding: 15px 30px;
-            border-radius: 15px;
-            font-size: 28px;
-            color: white;
-            display: none;
-        }
-
-        .encouragement-message {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 32px;
-            color: white;
-            font-weight: 600;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-            animation: popIn 0.4s ease;
-            z-index: 100;
-        }
-
-        @keyframes popIn {
-            from { transform: translate(-50%,-50%) scale(0.5); opacity: 0; }
-            to { transform: translate(-50%,-50%) scale(1); opacity: 1; }
-        }
-
-        .heart {
-            position: absolute;
-            bottom: -50px;
-            font-size: 24px;
-            animation: floatUp 7s infinite;
-            opacity: 0.7;
-        }
-
-        @keyframes floatUp {
-            from { transform: translateY(0); opacity: 0; }
-            20% { opacity: 1; }
-            to { transform: translateY(-120vh); opacity: 0; }
-        }
-    </style>
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(-110vh); opacity: 0; }
+}
+</style>
 </head>
 
 <body>
 
-    <!-- Floating hearts -->
-    <div class="heart" style="left:10%">💕</div>
-    <div class="heart" style="left:20%">💕</div>
-    <div class="heart" style="left:30%">💕</div>
-    <div class="heart" style="left:40%">💕</div>
-    <div class="heart" style="left:50%">💕</div>
-    <div class="heart" style="left:60%">💕</div>
-    <div class="heart" style="left:70%">💕</div>
-    <div class="heart" style="left:80%">💕</div>
-    <div class="heart" style="left:90%">💕</div>
+<!-- Floating hearts -->
+<div class="heart" style="left:10%">💕</div>
+<div class="heart" style="left:25%">💕</div>
+<div class="heart" style="left:40%">💕</div>
+<div class="heart" style="left:55%">💕</div>
+<div class="heart" style="left:70%">💕</div>
+<div class="heart" style="left:85%">💕</div>
 
-    <div class="container">
-        <div class="content">
-            <div class="big-heart">❤️</div>
-            <h1>Will You Be My Valentine</h1>
-            <div class="name">Sudiksha?</div>
+<div class="container">
+    <div class="content">
+        <div class="big-heart">❤️</div>
+        <h1>Will You Be My Valentine</h1>
+        <div class="name">Sudiksha?</div>
 
-            <div class="buttons">
-                <button id="yesBtn">Yes! ❤️</button>
-                <button id="noBtn">No</button>
-            </div>
+        <div class="buttons">
+            <!-- PURE HTML REDIRECTION -->
+            <a href="celebration.html" class="yes-btn">Yes! ❤️</a>
+            <button id="noBtn">No</button>
         </div>
     </div>
+</div>
 
-    <div id="reallyText" class="really-text">Really?</div>
+<script>
+/* Only fun NO button logic */
+const noBtn = document.getElementById("noBtn");
 
-    <script>
-        const yesBtn = document.getElementById("yesBtn");
-        const noBtn = document.getElementById("noBtn");
-        const reallyText = document.getElementById("reallyText");
+noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+    noBtn.style.position = "fixed";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+</script>
 
-        let noCount = 0;
-        let runAway = false;
-
-        const messages = [
-            "Please reconsider 🥺",
-            "Don't break my heart 💔",
-            "Think again ❤️",
-            "You know you want to say yes 😏",
-            "Last chance 🙏"
-        ];
-
-        let msgIndex = 0;
-
-        document.addEventListener("mousemove", e => {
-            if (!runAway) return;
-
-            const rect = noBtn.getBoundingClientRect();
-            const dx = rect.left - e.clientX;
-            const dy = rect.top - e.clientY;
-            const dist = Math.sqrt(dx*dx + dy*dy);
-
-            if (dist < 150) {
-                showMessage();
-
-                let newX = Math.random() * (window.innerWidth - rect.width);
-                let newY = Math.random() * (windo*
+</body>
+</html>
